@@ -425,6 +425,9 @@
                                 <li>
                                     <a href="<?= base_url('admin/logs') ?>"> Log</a>
                                 </li>
+                                <li>
+                                    <a href="<?= base_url('admin/access') ?>"> Role Access</a>
+                                </li>
                             </ul>
                         </li>
                         <!-- <?php 
@@ -444,10 +447,10 @@
                                 else: $arrow = null;
                                 endif;
 
-                                echo    '<li>'.
+                                /*echo    '<li>'.
                                             '<a href="'.base_url($link).'" class="'.$key.'"><i class="fa fa-'.$icon.' fa-fw"></i> '.ucfirst($key).$arrow.'</a>';
-
-                                if($data['attribute']['sub_menu'][$i][$key] !== ""):
+*/
+                                /*if($data['attribute']['sub_menu'][$i][$key] !== ""):
                                     $second_menu = $data['attribute']['sub_menu'][$i][$key];
                                     $second_link = $data['attribute']['sub_menu'][$i]['link'];
                                     
@@ -468,7 +471,7 @@
                                     echo    '</ul>'.
                                          '</li>';
 
-                                endif;
+                                endif;*/
                             }
                         ?>                -->         
                     </ul>

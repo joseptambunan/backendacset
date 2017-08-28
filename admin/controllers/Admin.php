@@ -11322,4 +11322,41 @@ class Admin extends Catalyst_Admin_Panel
 
         $this->catalyst->render($catalyst,$data);
     }
+
+    public function access(){
+        $this->cat_login->is_login();
+
+        $catalyst['header'] = 'admin-main-header';
+        $catalyst['label'] = $this->_admin;
+        $catalyst['themes'] = "access";
+        $catalyst['processor'] = null;
+        $catalyst['footer'] = null;
+        $data['access_list'] = $this->cat_model->getall('cat_admin');
+
+        $this->catalyst->render($catalyst,$data);
+    }
+
+    public function updateaccess(){
+      $userid = $this->input->post("userid");
+      $privilege = trim($this->input->post("privilege_".$userid),",");
+      $passwords = md5($this->input->post("password"));
+      $token = $this->input->post("password");
+      if ( $passwords == "" ){
+        $this->db->query("update cat_admin set privilege ='$privilege' where id ='$userid'");
+      }else{
+        $this->db->query("update cat_admin set privilege ='$privilege',password = '$passwords',token ='$token' where id ='$userid'");
+      }
+      echo '<script>window.location.href = "'.base_url('admin/access').'"</script>';
+    }
+
+    public function add_access(){
+      $username = $this->input->post("username");
+      $passwords = md5($this->input->post("passwords"));
+      $token = $this->input->post("passwords");
+      $privilege = trim($this->input->post("privilege_new"),",");
+
+      $this->db->query("insert into cat_admin(username,password,valid,privilege,token)values('$username','$passwords','0','$privilege','$token')");
+
+      echo '<script>window.location.href = "'.base_url('admin/access').'"</script>';
+    }
 }
