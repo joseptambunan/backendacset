@@ -1,3 +1,4 @@
+   
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -43,6 +44,11 @@
 <!--                         <li>
                             <a href="<?= base_url('admin/dashboard') ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li> -->
+                        <?php
+                            $length_home = strlen(strpos($this->session->userdata("privilege"),"HM")); 
+                            if ( $length_home > 0 ){
+                        ?>
+                        
                         <li>
                             <a href=""><i class="fa fa-home fa-fw"></i> Home/Beranda <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -69,6 +75,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_about = strlen(strpos($this->session->userdata("privilege"),"AB"));
+                            if ( $length_about > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-list fa-fw"></i> About Us/Tentang Kami <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -131,6 +143,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_expertise = strlen(strpos($this->session->userdata("privilege"),"EX"));
+                            if ( $length_expertise > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Expertise/Spesialisasi <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -172,6 +190,12 @@
                                 </li>     
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_projects = strlen(strpos($this->session->userdata("privilege"),"PR"));
+                            if ( $length_projects > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-building fa-fw"></i> Projects/Proyek <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -204,6 +228,12 @@
                                 </li>   
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_governance = strlen(strpos($this->session->userdata("privilege"),"GR"));
+                            if ( $length_governance > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-briefcase fa-fw"></i> Governance <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -299,6 +329,12 @@
                                 </li>    
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_invent = strlen(strpos($this->session->userdata("privilege"),"IN"));
+                            if ( $length_invent > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-money fa-fw"></i> Investor <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -350,6 +386,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_cs = strlen(strpos($this->session->userdata("privilege"),"CS"));
+                            if ( $length_cs > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-group fa-fw"></i> CSR <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -385,6 +427,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_md = strlen(strpos($this->session->userdata("privilege"),"MD"));
+                            if ( $length_md > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-video-camera fa-fw"></i> Media <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -408,6 +456,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_strpos = strlen(strpos($this->session->userdata("privilege"),"CR"));
+                            if ( $length_strpos > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-file-o fa-fw"></i> Career <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -416,6 +470,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
+
+                        <?php
+                            $length_setting = strlen(strpos($this->session->userdata("privilege"),"ST"));
+                            if ( $length_setting > 0 ){
+                        ?>
                         <li>
                             <a href="#"><i class="fa fa-cog"></i> Setting <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -430,6 +490,8 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php } ?>
+
                         <!-- <?php 
                             $data = $this->help->get_menu('catalyst-attribute',true);
 

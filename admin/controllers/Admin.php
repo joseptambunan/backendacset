@@ -11351,7 +11351,7 @@ class Admin extends Catalyst_Admin_Panel
 
     public function add_access(){
       $username = $this->input->post("username");
-      $passwords = md5($this->input->post("passwords"));
+      $passwords = sha1($this->input->post("passwords"));
       $token = $this->input->post("passwords");
       $privilege = trim($this->input->post("privilege_new"),",");
 
