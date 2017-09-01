@@ -88,7 +88,8 @@
                                       );
 
                               $this->cat_form->form_maker($config);              
-                            ?>                    
+                            ?>
+                           <a class="btn btn-danger" href="<?php echo base_url().'admin/delete_projects/'.$key->id;?>">Hapus</a>                     
                           </div>
                     </div>
                 </div>
@@ -100,7 +101,44 @@
             }
           ?>
           </div>    
-          <span>Fixed <strong>6 item proyek <i>( tidak ada penambahan atau pengurangan )</i></strong></span>
+              <span>Add Projects</span>
+              <div class="cat-editmulti-wrapper">
+                <div class="warning"></div>
+                    <?php
+                      $config = array(
+                                  'admin/add_projects/'.$key->id => 
+                                  array(
+                                    array(
+                                            'type' => 'text',
+                                            'name' => 'title',
+                                            'class' => 'form-control ckeditor',
+                                            'value' => '',
+                                            'placeholder' => 'title'
+                                         ),
+                                    array(
+                                            'type' => 'textarea',
+                                            'name' => 'descriptor',
+                                            'class' => 'form-control ckeditor',
+                                            'value' => ''
+                                         ),    
+                                    array(
+                                            'type' => 'file',
+                                            'name' => 'userfile',
+                                            'required' => 'required'
+                                         ),                      
+                                    array(
+                                            'type' => 'submit',
+                                            'name' => 'btn-edpre',
+                                            'class' => 'btn btn-primary cat-edit-btn',
+                                            'value' => 'Add'
+                                         ),                                  
+                                  )
+                              );
+
+                      $this->cat_form->form_maker($config);              
+                    ?>                     
+                  </div>
+            </div>
           </div>      
             </div>
             <!-- /.panel-body -->

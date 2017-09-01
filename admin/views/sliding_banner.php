@@ -89,7 +89,8 @@
                                       );
 
                               $this->cat_form->form_maker($config);              
-                            ?>                    
+                            ?>  
+                            <a href="<?php echo base_url().'admin/delete_sliding_banner/'.$key->id;?>" class="btn btn-danger">Delete Slider</a>                  
                           </div>
                     </div>
                 </div>
@@ -100,8 +101,37 @@
 
           <?php
             }
-          ?>
-          <span>Fixed <strong>3 slider banner <i>( tidak ada penambahan atau pengurangan )</i></strong></span>
+          ?><br/>
+          <div class="cat-editmulti-wrapper">
+            <div class="warning"> </div>
+            <?php
+              $config = array(
+                          'admin/add_sliding/'.$key->id => 
+                          array(
+                            array(
+                                    'type' => 'textarea',
+                                    'name' => 'descriptor',
+                                    'class' => 'form-control ckeditor',
+                                    'value' => '',
+                                    'required' => 'required'
+                                 ),    
+                            array(
+                                    'type' => 'file',
+                                    'name' => 'userfile',
+                                    'required' => 'required'
+                                 ),                     
+                            array(
+                                    'type' => 'submit',
+                                    'name' => 'btn-edpre',
+                                    'class' => 'btn btn-primary cat-edit-btn',
+                                    'value' => 'Add'
+                                 ),                                  
+                          )
+                      );
+
+              $this->cat_form->form_maker($config);              
+            ?>                    
+          </div>
           </div>    
           
           </div>      

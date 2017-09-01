@@ -94,7 +94,8 @@
                                       );
 
                               $this->cat_form->form_maker($config);              
-                            ?>                    
+                            ?>     
+                            <a class="btn btn-danger" href="<?php echo base_url().'admin/delete_prinsip/'.$key->id;?>">Hapus</a>               
                           </div>
                     </div>
                 </div>
@@ -106,7 +107,42 @@
             }
           ?>
           </div>    
-          <span>Fixed <strong>3 item <i>( tidak ada penambahan atau pengurangan )</i></strong></span>
+          <span><strong>Tambah Prinsip</strong></span>
+          <div class="cat-editmulti-wrapper">
+            <div class="warning"></div>
+            <?php
+              $config = array(
+                          'admin/add_prinsip/'.$key->id => 
+                          array(
+                            array(
+                                    'type' => 'text',
+                                    'name' => 'title',
+                                    'class' => 'form-control ckeditor',
+                                    'value' => ''
+                                 ),    
+                            array(
+                                    'type' => 'textarea',
+                                    'name' => 'desc',
+                                    'class' => 'form-control ckeditor',
+                                    'value' => ''
+                                 ),    
+                            array(
+                                    'type' => 'file',
+                                    'name' => 'userfile',
+                                    'required' => 'required'
+                                 ),                      
+                            array(
+                                    'type' => 'submit',
+                                    'name' => 'btn-edpre',
+                                    'class' => 'btn btn-primary cat-edit-btn',
+                                    'value' => 'Add'
+                                 ),                                  
+                          )
+                      );
+
+              $this->cat_form->form_maker($config);              
+            ?>                    
+          </div>
           </div>      
             </div>
             <!-- /.panel-body -->

@@ -56,7 +56,77 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
-     public function edit_sliding()
+    public function delete_sliding_banner($id){
+      $this->db->query("delete from home_header where id ='$id'");
+      echo '<script>window.location.href = "'.base_url('admin/sliding_banner').'"</script>';
+    }
+
+    public function add_sliding(){
+      $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/sliding_banner' => 
+                    array(
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'file',
+                              'name' => 'userfile',
+                              'path' => '/assets/image/headerslider/',
+                              'allowed' => 'jpg|jpeg|png',
+                              'size' => '0',
+                              'width' => '4000',
+                              'height' => '4000'
+
+                           )                      
+                    )
+                );
+     
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+        if ( $this->input->post("descriptor") == "" ){
+            echo "<script>alert('Please fill title banner');</script>";
+            echo '<script>window.location.href = "'.base_url('admin/sliding_banner').'"</script>';     
+        }else{
+            if ( $detail['userfile'] == "" ){
+               // echo "<script>alert('Please select image to upload');</script>";
+                //echo '<script>window.location.href = "'.base_url('admin/sliding_banner').'"</script>'; 
+                 $config = array(
+                    'admin/sliding_banner' => 
+                    array(
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           )
+                    ));
+                $detail = $this->cat_form->validator($config,false,true);
+                $this->cat_model->insert('home_header',$detail);
+
+                echo '<script>window.location.href = "'.base_url('admin/sliding_banner').'"</script>'; 
+            }else{
+              //$var = array( 'table' => 'home_header', 'condition' => 'id = '.$id.'');      
+              $this->cat_model->insert('home_header',$detail);
+            }
+            echo '<script>window.location.href = "'.base_url('admin/sliding_banner').'"</script>';     
+        }         
+       
+    }
+
+    public function edit_sliding()
     {
         $url = $this->uri->uri_string();
         $url = explode('/',$url);
@@ -200,7 +270,76 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
-     public function edit_mengapa_acset()
+    public function delete_mengapa_acset($id){
+      $this->db->query("delete from home_why_acset_id where id ='$id'");
+       echo '<script>window.location.href = "'.base_url('admin/mengapa_acset').'"</script>'; 
+    }
+
+    public function add_mengapa_acset(){      
+        $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/mengapa_acset' => 
+                    array(
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'file',
+                              'name' => 'userfile',
+                              'path' => '/assets/image/why_acset/',
+                              'allowed' => 'jpg|jpeg|png',
+                              'size' => '0',
+                              'width' => '4000',
+                              'height' => '4000'
+
+                           )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+        if ( $this->input->post("descriptor") == "" ){
+            echo "<script>alert('Please fill title');</script>";
+          echo '<script>window.location.href = "'.base_url('admin/mengapa_acset').'"</script>';   
+        }else{
+            if ( $detail['userfile'] == "" ){
+                //echo "<script>alert('Please select image to upload');</script>";
+                echo '<script>window.location.href = "'.base_url('admin/mengapa_acset').'"</script>';  
+                $var = array('table' => 'home_why_acset_id', 'condition' => 'id = '.$id.'' );
+                $config = array(
+                    'admin/mengapa_acset' => 
+                    array(
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           )));
+              
+                $detail = $this->cat_form->validator($config,false,true);
+                $this->cat_model->insert("home_why_acset_id",$detail);
+                echo '<script>window.location.href = "'.base_url('admin/mengapa_acset').'"</script>'; 
+            }else{
+            
+            // var_dump($var);
+             $this->cat_model->insert("home_why_acset_id",$detail);
+            }
+           echo '<script>window.location.href = "'.base_url('admin/mengapa_acset').'"</script>'; 
+        }     
+        
+    }
+
+    public function edit_mengapa_acset()
     {
         $url = $this->uri->uri_string();
         $url = explode('/',$url);
@@ -288,7 +427,83 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
-     public function edit_why_acset()
+    public function delete_why_acset($id){
+      $this->db->query("delete from home_why_acset where id ='$id'");
+      echo '<script>window.location.href = "'.base_url('admin/why_acset').'"</script>';
+    }
+
+    public function add_why_acset(){
+      $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/why_acset' => 
+                    array(
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'file',
+                              'name' => 'userfile',
+                              'path' => '/assets/image/why_acset/',
+                              'allowed' => 'jpg|jpeg|png',
+                              'size' => '0',
+                              'width' => '4000',
+                              'height' => '4000'
+
+                           )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+         if ( $this->input->post("descriptor") == "" ){
+            echo "<script>alert('Please fill title');</script>";
+            echo '<script>window.location.href = "'.base_url('admin/why_acset').'"</script>';
+        }else{
+            if ( $detail['userfile'] == "" ){
+                //echo "<script>alert('Please select image to upload');</script>";
+                //echo '<script>window.location.href = "'.base_url('admin/why_acset').'"</script>'; 
+                $config = array(
+                    'admin/why_acset' => 
+                    array(
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ))); 
+              /*  $var = array('table' => 'home_why_acset_id', 
+                       'condition' => 'id = '.$id.''
+                      );*/
+                $detail = $this->cat_form->validator($config,false,true);
+                $this->cat_model->insert("home_why_acset",$detail);
+                 echo '<script>window.location.href = "'.base_url('admin/why_acset').'"</script>';
+            }else{
+/*               $var = array('table' => 'home_why_acset', 
+                         'condition' => 'id = '.$id.''
+                        );*/
+            // var_dump($var);
+            $this->cat_model->insert("home_why_acset",$detail);
+            }
+            echo '<script>window.location.href = "'.base_url('admin/why_acset').'"</script>';
+        }    
+
+       
+           
+       
+    }
+
+    public function edit_why_acset()
     {
         $url = $this->uri->uri_string();
         $url = explode('/',$url);
@@ -378,6 +593,86 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
+    public function delete_proyek($id){
+      $this->db->query("delete from home_projects_id where id ='$id'");
+      echo '<script>window.location.href = "'.base_url('admin/proyek').'"</script>';
+    }
+
+    public function add_proyek(){
+      $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/projects' => 
+                    array(
+                      array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'file',
+                              'name' => 'userfile',
+                              'path' => '/assets/image/projects/',
+                              'allowed' => 'jpg|jpeg|png',
+                              'size' => '0',
+                              'width' => '4000',
+                              'height' => '4000'
+
+                           )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+        if ( $this->input->post("descriptor") == "" ){
+          echo "<script>alert('Please fill title');</script>";
+          echo '<script>window.location.href = "'.base_url('admin/projects').'"</script>';
+        }else{
+            if ( $detail['userfile'] == "" ){
+                 $config = array(
+                    'admin/proyek' => 
+                    array(
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                       array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           )
+                      ));
+
+                $this->cat_model->insert("home_projects_id",$detail);
+
+            }else{
+              $this->cat_model->insert("home_projects_id",$detail);
+            }
+          echo '<script>window.location.href = "'.base_url('admin/proyek').'"</script>';
+        }  
+     // var_dump($var);
+             
+    }
+
+
      public function edit_proyek()
     {
         $url = $this->uri->uri_string();
@@ -463,6 +758,87 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
+    public function delete_projects($id){
+      $this->db->query("delete from home_projects where id ='$id'");
+      echo '<script>window.location.href = "'.base_url('admin/projects').'"</script>';
+    }
+
+    public function add_projects(){
+      $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/projects' => 
+                    array(
+                      array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'file',
+                              'name' => 'userfile',
+                              'path' => '/assets/image/projects/',
+                              'allowed' => 'jpg|jpeg|png',
+                              'size' => '0',
+                              'width' => '4000',
+                              'height' => '4000'
+
+                           )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+        if ( $this->input->post("descriptor") == "" ){
+          echo "<script>alert('Please fill title');</script>";
+          echo '<script>window.location.href = "'.base_url('admin/projects').'"</script>';
+        }else{
+            if ( $detail['userfile'] == "" ){
+                 $config = array(
+                    'admin/proyek' => 
+                    array(
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'descriptor',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           ),
+                       array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('descriptor'),
+                              'rules' => 'trim|required'
+                           )
+                      ));
+
+                $this->cat_model->insert("home_projects",$detail);
+
+            }else{
+              $this->cat_model->insert("home_projects",$detail);
+            }
+          echo '<script>window.location.href = "'.base_url('admin/projects').'"</script>';
+        }  
+       
+            // var_dump($var);
+           
+             
+    }
+
      public function edit_projects()
     {
         $url = $this->uri->uri_string();
@@ -545,7 +921,53 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
-     public function edit_clients()
+    public function add_clients(){
+        $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/our_clients' => 
+                    array(
+                      array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('title'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'file',
+                              'name' => 'userfile',
+                              'path' => '/assets/image/clients/',
+                              'allowed' => 'jpg|jpeg|png',
+                              'size' => '0',
+                              'width' => '4000',
+                              'height' => '4000'
+
+                           )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+        if ( $detail['userfile'] == "" ){
+          echo "<script>alert('Please select image to upload');</script>";
+          echo '<script>window.location.href = "'.base_url('admin/our_clients').'"</script>';
+        }else{
+            $this->cat_model->insert("home_ourclients",$detail);
+            echo '<script>window.location.href = "'.base_url('admin/our_clients').'"</script>';
+        }
+    }
+
+    public function delete_client($id){
+      $this->db->query("delete from home_ourclients where id ='$id'");
+      echo '<script>window.location.href = "'.base_url('admin/our_clients').'"</script>';
+    }
+
+    public function edit_clients()
     {
         $url = $this->uri->uri_string();
         $url = explode('/',$url);
@@ -1087,7 +1509,7 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
-     public function edit_prinsip()
+    public function edit_prinsip()
     {
         $url = $this->uri->uri_string();
         $url = explode('/',$url);
@@ -1168,6 +1590,88 @@ class Admin extends Catalyst_Admin_Panel
        
     }
 
+    public function add_prinsip()
+    {
+        $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/prinsip' => 
+                    array(
+                      array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('title'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'desc',
+                              'class' => 'form-control',
+                              'value' => set_value('desc'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'file',
+                              'name' => 'userfile',
+                              'path' => '/assets/image/about_us/',
+                              'allowed' => 'jpg|jpeg|png',
+                              'size' => '0',
+                              'width' => '4000',
+                              'height' => '4000'
+
+                           )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+        if ( $detail['desc'] == "" || $detail['title'] == "" ){
+          echo "<script>alert('Please fill description or title');</script>";
+          echo '<script>window.location.href = "'.base_url('admin/prinsip').'"</script>';
+        }else{
+
+            if ( $detail['userfile'] == "" ){
+              $config = array(
+                    'admin/prinsip' => 
+                    array(
+                      array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('title'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'desc',
+                              'class' => 'form-control',
+                              'value' => set_value('desc'),
+                              'rules' => 'trim|required'
+                           )));
+              
+               $detail = $this->cat_form->validator($config,false,true);
+              $this->cat_model->insert("aboutus_corporateprincipal_id",$detail);
+            }else{
+             
+              // var_dump($var);
+              $this->cat_model->insert("aboutus_corporateprincipal_id",$detail);
+            }
+            echo '<script>window.location.href = "'.base_url('admin/prinsip').'"</script>';
+        }      
+       
+    }
+
+    public function delete_prinsip($id){
+      $this->db->query("delete from aboutus_corporateprincipal_id where id ='$id'");
+      echo '<script>window.location.href = "'.base_url('admin/prinsip').'"</script>';
+    }
+
     public function principal()
     {
         $this->cat_login->is_login();
@@ -1186,7 +1690,12 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
-     public function edit_principal()
+    public function delete_principal($id){
+      $this->db->query("delete from aboutus_corporateprincipal where id ='$id'");
+      echo '<script>window.location.href = "'.base_url('admin/principal').'"</script>';
+    }
+
+    public function edit_principal()
     {
         $url = $this->uri->uri_string();
         $url = explode('/',$url);
@@ -1259,6 +1768,83 @@ class Admin extends Catalyst_Admin_Panel
                         );
             // var_dump($var);
             $this->cat_model->update($var,$detail);
+            }
+            echo '<script>window.location.href = "'.base_url('admin/principal').'"</script>';
+        }
+
+        
+            
+       
+    }
+
+    public function add_principal()
+    {
+        $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/principal' => 
+                    array(
+                      array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('title'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'desc',
+                              'class' => 'form-control',
+                              'value' => set_value('desc'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'file',
+                              'name' => 'userfile',
+                              'path' => '/assets/image/about_us/',
+                              'allowed' => 'jpg|jpeg|png',
+                              'size' => '0',
+                              'width' => '4000',
+                              'height' => '4000'
+
+                           )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+        if ( $detail['desc'] == "" || $detail['title'] == "" ){
+          echo "<script>alert('Please fill description or title');</script>";
+          echo '<script>window.location.href = "'.base_url('admin/principal').'"</script>';
+        }else{
+
+            if ( $detail['userfile'] == "" ){
+              $config = array(
+                    'admin/principal' => 
+                    array(
+                      array(
+                              'type' => 'text',
+                              'name' => 'title',
+                              'class' => 'form-control',
+                              'value' => set_value('title'),
+                              'rules' => 'trim|required'
+                           ),
+                      array(
+                              'type' => 'textarea',
+                              'name' => 'desc',
+                              'class' => 'form-control',
+                              'value' => set_value('desc'),
+                              'rules' => 'trim|required'
+                           )));
+               $detail = $this->cat_form->validator($config,false,true);
+              $this->cat_model->insert("aboutus_corporateprincipal",$detail);
+            }else{
+              $this->cat_model->insert("aboutus_corporateprincipal",$detail);
             }
             echo '<script>window.location.href = "'.base_url('admin/principal').'"</script>';
         }
