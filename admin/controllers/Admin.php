@@ -12126,4 +12126,112 @@ class Admin extends Catalyst_Admin_Panel
         $this->cat_model->update($var,$detail);
         echo '<script>window.location.href = "'.base_url('admin/privacy').'"</script>';
     }
+
+    public function organization_en(){
+      $this->cat_login->is_login();
+
+      $catalyst['header'] = 'admin-main-header';
+      $catalyst['label'] = $this->_admin;
+      $catalyst['themes'] = "organization_structure";
+      $catalyst['processor'] = null;
+      $catalyst['footer'] = null;
+      $data['raw_orgstructure'] = $this->cat_model->getall('governance_orgstructure');
+
+      $this->catalyst->render($catalyst,$data);
+    }
+
+    public function edit_organization_en(){
+      $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/privacy_en' => 
+                    array(
+                      array(
+                          'type' => 'textarea',
+                          'name' => 'descriptor',
+                          'class' => 'form-control',
+                          'value' => set_value('descriptor'),
+                          'rules' => 'trim|required'
+                       ),
+                       array(
+                           'type' => 'file',
+                           'name' => 'userfile',
+                           'path' => '/assets/image/governance/',
+                           'allowed' => 'jpg|jpeg|png',
+                           'size' => '0',
+                           'width' => '4000',
+                           'height' => '4000'
+                        )                       
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+        $var = array(
+          'table' => 'governance_orgstructure', 
+          'condition' => 'id = '.$id.''
+        );
+       
+        $this->cat_model->update($var,$detail);
+        echo '<script>window.location.href = "'.base_url('admin/organization_en').'"</script>';
+    }
+
+    public function organization(){
+      $this->cat_login->is_login();
+
+      $catalyst['header'] = 'admin-main-header';
+      $catalyst['label'] = $this->_admin;
+      $catalyst['themes'] = "organization";
+      $catalyst['processor'] = null;
+      $catalyst['footer'] = null;
+      $data['raw_orgstructure'] = $this->cat_model->getall('governance_orgstructure_id');
+
+      $this->catalyst->render($catalyst,$data);
+    }
+
+    public function edit_organization(){
+      $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/privacy_en' => 
+                    array(
+                      array(
+                          'type' => 'textarea',
+                          'name' => 'descriptor',
+                          'class' => 'form-control',
+                          'value' => set_value('descriptor'),
+                          'rules' => 'trim|required'
+                       ),
+                       array(
+                           'type' => 'file',
+                           'name' => 'userfile',
+                           'path' => '/assets/image/governance/',
+                           'allowed' => 'jpg|jpeg|png',
+                           'size' => '0',
+                           'width' => '4000',
+                           'height' => '4000'
+                        )                       
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+        $var = array(
+          'table' => 'governance_orgstructure_id', 
+          'condition' => 'id = '.$id.''
+        );
+       
+        $this->cat_model->update($var,$detail);
+        echo '<script>window.location.href = "'.base_url('admin/organization').'"</script>';
+    }
 }

@@ -153,6 +153,12 @@
                                 <li>
                                     <a href="<?= base_url('admin/privacy') ?>">Privacy Policy - ID</a>
                                 </li>
+                                <li>
+                                    <a href="<?= base_url('admin/organization_en') ?>">Organization Structure - EN</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('admin/organization') ?>">Struktur Organisasi - ID</a>
+                                </li>
                             </ul>
                         </li>
                         <?php } ?>
