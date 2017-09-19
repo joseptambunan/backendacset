@@ -1055,17 +1055,17 @@ class Admin extends Catalyst_Admin_Panel
                               'value' => set_value('descriptor'),
                               'rules' => 'trim|required'
                            )
-                      // ,
-                      // array(
-                      //         'type' => 'file',
-                      //         'name' => 'userfile',
-                      //         'path' => '/assets/image/about_us/',
-                      //         'allowed' => 'jpg|jpeg|png',
-                      //         'size' => '0',
-                      //         'width' => '4000',
-                      //         'height' => '4000'
+                       ,
+                      array(
+                               'type' => 'file',
+                               'name' => 'userfile',
+                               'path' => '/assets/image/about_us/',
+                               'allowed' => 'jpg|jpeg|png',
+                               'size' => '0',
+                               'width' => '4000',
+                               'height' => '4000'
 
-                      //      )                      
+                            )                      
                     )
                 );
 
@@ -1098,7 +1098,7 @@ class Admin extends Catalyst_Admin_Panel
 
     }
 
-     public function edit_greetings()
+    public function edit_greetings()
     {
         $url = $this->uri->uri_string();
         $url = explode('/',$url);
@@ -1117,17 +1117,17 @@ class Admin extends Catalyst_Admin_Panel
                               'value' => set_value('descriptor'),
                               'rules' => 'trim|required'
                            )
-                      // ,
-                      // array(
-                      //         'type' => 'file',
-                      //         'name' => 'userfile',
-                      //         'path' => '/assets/image/about_us/',
-                      //         'allowed' => 'jpg|jpeg|png',
-                      //         'size' => '0',
-                      //         'width' => '4000',
-                      //         'height' => '4000'
+                       ,
+                       array(
+                               'type' => 'file',
+                               'name' => 'userfile',
+                               'path' => '/assets/image/greetings/',
+                              'allowed' => 'jpg|jpeg|png',
+                               'size' => '0',
+                               'width' => '4000',
+                               'height' => '4000'
 
-                      //      )                      
+                            )                      
                     )
                 );
 
@@ -11944,5 +11944,186 @@ class Admin extends Catalyst_Admin_Panel
       $this->db->query("insert into cat_admin(username,password,valid,privilege,token)values('$username','$passwords','0','$privilege','$token')");
 
       echo '<script>window.location.href = "'.base_url('admin/access').'"</script>';
+    }
+
+    public function tnc(){
+      $this->cat_login->is_login();
+
+      $catalyst['header'] = 'admin-main-header';
+      $catalyst['label'] = $this->_admin;
+      $catalyst['themes'] = "tnc";
+      $catalyst['processor'] = null;
+      $catalyst['footer'] = null;
+      $data['raw_tnc'] = $this->cat_model->getall('aboutus_tnc');
+
+      $this->catalyst->render($catalyst,$data);
+    }
+
+    public function edittnc()
+    {
+        $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/tnc' => 
+                    array(
+                      array(
+                          'type' => 'textarea',
+                          'name' => 'descriptor',
+                          'class' => 'form-control',
+                          'value' => set_value('descriptor'),
+                          'rules' => 'trim|required'
+                       )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+        $var = array('table' => 'aboutus_tnc', 
+                         'condition' => 'id = '.$id.''
+                        );
+            // var_dump($var);
+            $this->cat_model->update($var,$detail);
+            echo '<script>window.location.href = "'.base_url('admin/tnc').'"</script>';
+       
+    }
+    
+    public function tncen(){
+      $this->cat_login->is_login();
+
+      $catalyst['header'] = 'admin-main-header';
+      $catalyst['label'] = $this->_admin;
+      $catalyst['themes'] = "tncen";
+      $catalyst['processor'] = null;
+      $catalyst['footer'] = null;
+      $data['raw_tnc'] = $this->cat_model->getall('aboutus_tnc_en');
+
+      $this->catalyst->render($catalyst,$data);
+    }
+
+    public function edittncen(){
+      $url = $this->uri->uri_string();
+      $url = explode('/',$url);
+
+      $id = $url[count($url)-1];
+
+      $click = $this->input->post('btn-edpre');
+
+      $config = array(
+                  'admin/tnc' => 
+                  array(
+                    array(
+                        'type' => 'textarea',
+                        'name' => 'descriptor',
+                        'class' => 'form-control',
+                        'value' => set_value('descriptor'),
+                        'rules' => 'trim|required'
+                     )                      
+                  )
+              );
+
+      $detail = $this->cat_form->validator($config,false,true);
+
+      $var = array('table' => 'aboutus_tnc_en', 
+                       'condition' => 'id = '.$id.''
+                      );
+      // var_dump($var);
+      $this->cat_model->update($var,$detail);
+      echo '<script>window.location.href = "'.base_url('admin/tncen').'"</script>';
+    }
+
+    public function privacy(){
+      $this->cat_login->is_login();
+
+      $catalyst['header'] = 'admin-main-header';
+      $catalyst['label'] = $this->_admin;
+      $catalyst['themes'] = "privacy";
+      $catalyst['processor'] = null;
+      $catalyst['footer'] = null;
+      $data['raw_privacy'] = $this->cat_model->getall('aboutus_privacy');
+
+      $this->catalyst->render($catalyst,$data);
+    }
+
+    public function edit_privacy()
+    {
+        $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/privacy' => 
+                    array(
+                      array(
+                          'type' => 'textarea',
+                          'name' => 'description',
+                          'class' => 'form-control',
+                          'value' => set_value('description'),
+                          'rules' => 'trim|required'
+                       )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+        $var = array('table' => 'aboutus_privacy', 
+                         'condition' => 'id = '.$id.''
+                        );
+            // var_dump($var);
+            $this->cat_model->update($var,$detail);
+            echo '<script>window.location.href = "'.base_url('admin/privacy').'"</script>';
+       
+    }
+    
+    public function privacy_en(){
+      $this->cat_login->is_login();
+
+      $catalyst['header'] = 'admin-main-header';
+      $catalyst['label'] = $this->_admin;
+      $catalyst['themes'] = "privacy_en";
+      $catalyst['processor'] = null;
+      $catalyst['footer'] = null;
+      $data['raw_privacy'] = $this->cat_model->getall('aboutus_privacy_en');
+
+      $this->catalyst->render($catalyst,$data);
+    }
+
+    public function edit_privacy_en(){
+      $url = $this->uri->uri_string();
+        $url = explode('/',$url);
+
+        $id = $url[count($url)-1];
+
+        $click = $this->input->post('btn-edpre');
+
+        $config = array(
+                    'admin/privacy_en' => 
+                    array(
+                      array(
+                          'type' => 'textarea',
+                          'name' => 'description',
+                          'class' => 'form-control',
+                          'value' => set_value('description'),
+                          'rules' => 'trim|required'
+                       )                      
+                    )
+                );
+
+        $detail = $this->cat_form->validator($config,false,true);
+
+        $var = array(
+          'table' => 'aboutus_privacy_en', 
+          'condition' => 'id = '.$id.''
+        );
+        // var_dump($var);
+        $this->cat_model->update($var,$detail);
+        echo '<script>window.location.href = "'.base_url('admin/privacy').'"</script>';
     }
 }

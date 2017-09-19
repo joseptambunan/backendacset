@@ -141,6 +141,18 @@
                                 <li>
                                     <a href="<?= base_url('admin/penghargaan') ?>">Penghargaan - ID</a>
                                 </li>
+                                <li>
+                                    <a href="<?= base_url('admin/tncen') ?>">TNC - EN</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('admin/tnc') ?>">TNC - ID</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('admin/privacy_en') ?>">Privacy Policy - EN</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('admin/privacy') ?>">Privacy Policy - ID</a>
+                                </li>
                             </ul>
                         </li>
                         <?php } ?>
