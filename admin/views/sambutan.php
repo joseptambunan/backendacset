@@ -53,7 +53,7 @@
           <div class="panel panel-default">
                 
                     <div class="panel-body">
-<!--                          <img src="<?= base_url($key->userfile) ?>" class="img-responsive"> -->
+                        <img src="<?= base_url($key->userfile) ?>" class="img-responsive">
 
                           <div class="cat-editmulti-wrapper">
                             <div class="warning"></div>
@@ -67,10 +67,10 @@
                                                     'class' => 'form-control ckeditor',
                                                     'value' => $key->descriptor
                                                  ),    
-                                            // array(
-                                            //         'type' => 'file',
-                                            //         'name' => 'userfile',
-                                            //      ),                      
+                                            array(
+                                                     'type' => 'file',
+                                                     'name' => 'userfile',
+                                                  ),                      
                                             array(
                                                     'type' => 'submit',
                                                     'name' => 'btn-edpre',
